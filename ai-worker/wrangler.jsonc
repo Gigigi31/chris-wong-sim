@@ -6,7 +6,7 @@
   "workers_dev": true,
   "vars": {
     "SERVICE_ENABLED": "false",
-    "ALLOWED_ORIGINS": "",
+    "ALLOWED_ORIGINS": "https://gigigi31.github.io",
     "DEMO_EXPIRES_AT": ""
   },
   "ratelimits": [
