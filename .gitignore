@@ -1,0 +1,17 @@
+# Local AI development only — never commit secrets or injected builds
+.env
+chris_wong_local_ai.html
+.env*
+.dev.vars*
+node_modules/
+.wrangler/
+ai-worker/pages-dist/
+ai-worker/test-artifacts/
+.playwright-cli/
+
+# Local workspace data and duplicate exports are not publishable source
+.agents/
+.workbuddy-ai/
+skills-lock.json
+chris_wong_stimulator_full_day_edition (2)副本.html
+chris_wong_stimulator_full_day_edition (2)副本.html.zip

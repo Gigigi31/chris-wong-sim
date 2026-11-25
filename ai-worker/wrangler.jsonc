@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "chris-wong-ai",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-25",
+  "workers_dev": true,
+  "vars": {
+    "SERVICE_ENABLED": "false",
+    "ALLOWED_ORIGINS": "",
+    "DEMO_EXPIRES_AT": ""
+  },
+  "ratelimits": [
+    {
+      "name": "IP_RATE_LIMITER",
+      "namespace_id": "761101",
+      "simple": { "limit": 24, "period": 60 }
+    },
+    {
+      "name": "SERVICE_RATE_LIMITER",
+      "namespace_id": "761102",
+      "simple": { "limit": 60, "period": 60 }
+    }
+  ],
+  "observability": { "enabled": false },
+  "upload_source_maps": false
+}

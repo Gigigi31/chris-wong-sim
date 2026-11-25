@@ -1,0 +1,22 @@
+{
+  "name": "chris-wong-ai-worker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test test/worker.test.js test/frontend.test.js test/packaging.test.js",
+    "test:browser": "node --test --test-force-exit test/browser.test.js",
+    "test:runtime": "node --test --test-force-exit test/runtime.test.js",
+    "check:frontend": "node --test --test-name-pattern='只有 AI_CONFIG' test/frontend.test.js",
+    "build:pages": "node scripts/build-pages.js",
+    "dev:mock": "node scripts/dev-mock.js",
+    "dev": "wrangler dev --ip 127.0.0.1"
+  },
+  "devDependencies": {
+    "wrangler": "4.168.0",
+    "playwright": "1.65.1",
+    "esbuild": "0.28.2",
+    "miniflare": "5.20261123.1-beta"
+  }
+}

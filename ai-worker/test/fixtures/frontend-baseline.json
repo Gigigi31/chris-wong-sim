@@ -1,0 +1,16 @@
+{
+  "source": "chris_wong_stimulator_full_day_edition (2).html",
+  "originalSha256": "4fbe173fb3b8d969c0cd0cb2ce1aa631e94b504af863855cdfdffdb6039d7f8a",
+  "protectedSha256": "1002a73a2d6b29dbe6cb3adcce7744e3f5e1070eeebec5d1b4ff913237533ed8",
+  "originalBytes": 2429420,
+  "patterns": {
+    "AI_CONFIG": "      const AI_CONFIG = \\{[\\s\\S]*?\\n      \\};",
+    "aiEnabled": "      function aiEnabled\\(\\) \\{[\\s\\S]*?\\n      \\}",
+    "fetch": "              const res = await fetch\\([\\s\\S]*?\\n              \\}\\);"
+  },
+  "originalBlocks": {
+    "AI_CONFIG": "      const AI_CONFIG = {\n        enabled: true,\n        provider: 'deepseek',\n        baseUrl: 'https://api.deepseek.com/v1',\n        model: 'deepseek-chat',\n        apiKey: '__AI_KEY__',\n        timeoutEmailMs: 8000,\n        timeoutChatMs: 5000,\n        maxCallsPerStage: 6,\n        minCallGapMs: 1500\n      };",
+    "aiEnabled": "      function aiEnabled() {\n        return AI_CONFIG.enabled && /^sk-[A-Za-z0-9_-]{16,}$/.test(AI_CONFIG.apiKey);\n      }",
+    "fetch": "              const res = await fetch(`${AI_CONFIG.baseUrl}/chat/completions`, {\n                method: 'POST',\n                headers: {\n                  'Content-Type': 'application/json',\n                  'Authorization': `Bearer ${AI_CONFIG.apiKey}`\n                },\n                body: JSON.stringify(body),\n                signal: controller.signal\n              });"
+  }
+}

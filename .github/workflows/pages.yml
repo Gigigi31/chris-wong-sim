@@ -1,0 +1,46 @@
+name: Publish approved static page
+
+on:
+  workflow_dispatch:
+    inputs:
+      worker_url:
+        description: Public HTTPS Worker endpoint ending in /api/ai
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify frontend and build only index.html
+        env:
+          PUBLIC_WORKER_URL: ${{ inputs.worker_url }}
+        run: node ai-worker/scripts/build-pages.js --require-worker --worker-url "$PUBLIC_WORKER_URL"
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: ai-worker/pages-dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - name: Deploy isolated static artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
